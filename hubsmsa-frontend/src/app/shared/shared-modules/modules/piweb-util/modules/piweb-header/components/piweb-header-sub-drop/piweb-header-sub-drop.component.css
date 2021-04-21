@@ -1,0 +1,32 @@
+.nav-link {
+  cursor: pointer;
+}
+
+.navbar-nav a.dropdown-toggle {
+  color: #666;
+  cursor: pointer;
+}
+
+.dropdown-menu .dropdown-menu.show {
+  position: absolute;
+}
+
+@media screen and (max-width: 768px) {
+  .dropdown-menu .dropdown-menu.show {
+    width: 100%;
+  }
+}
+
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: initial;
+  right: 0;
+  width: fit-content;
+  min-width: 100%;
+  margin-top: -1px;
+}

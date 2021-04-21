@@ -1,0 +1,75 @@
+<piweb-container-padrao titulo="Visualização de Empresa">
+  <div id="visualizar2">
+    <div class="row mb-3">
+
+      <div class="col-md-2 text-right">
+        <label>Nome Empresarial</label>
+      </div>
+      <div class="col-md-4">
+        {{ empresa?.nomeEmpresarial }}
+      </div>
+
+    </div>
+
+    <div class="row mb-3">
+
+      <div class="col-md-2 text-right">
+        <label>Nome Fantasia</label>
+      </div>
+      <div class="col-md-4">
+        {{ empresa?.nomeFantasia }}
+      </div>
+
+    </div>
+
+    <div class="row mb-3">
+
+      <div class="col-md-2 text-right">
+        <label>CNPJ</label>
+      </div>
+      <div class="col-md-4">
+        {{ empresa?.cnpj | formatText: '99.999.999/9999-99'}}
+      </div>
+
+    </div>
+
+    <div class="row mb-3">
+
+      <div class="col-md-2 text-right">
+        <label>CNES</label>
+      </div>
+      <div class="col-md-4">
+        {{ empresa?.cnes  }}
+      </div>
+
+    </div>
+    <div class="row mb-3">
+
+      <div class="col-md-2 text-right">
+        <label>Site</label>
+      </div>
+      <div class="col-md-4">
+        <a href="{{empresa?.site}}" target="_blank">
+          {{ empresa?.site }}
+        </a>
+      </div>
+
+    </div>
+
+    <div class="row mb-3">
+
+      <div class="col-md-2 text-right">
+        <label>Ativo ?</label>
+      </div>
+
+      <div class="col-md-4">
+        {{ empresa?.status | enumTradutor:statusEnum}}
+      </div>
+
+    </div>
+  </div>
+
+  <piweb-barra-acoes>
+    <button piweb-btn-voltar title="Voltar" class="btn" (click)="voltar()">Voltar</button>
+  </piweb-barra-acoes>
+</piweb-container-padrao>

@@ -1,0 +1,32 @@
+<div class="card detalhe">
+    <div class="card-body">
+        <h5 class="mt-0 mb-1">
+            <span class="dica" data-toggle="tooltip" data-placement="right" title=""
+                data-original-title="Clique para exibir ou ocultar os dados">
+
+                <a class="collapse-title detalhe" data-toggle="collapse" [attr.href]="'#' + collapseId" role="button"
+                    aria-expanded="false" aria-controls="collapseDetalhe" (click)="collapsed = !collapsed">
+                    {{titulo}}
+                    <span [class.d-none]="collapsed">
+                        <i class="fas fa-chevron-circle-down"></i>
+                    </span>
+                    <span [class.d-none]="!collapsed">
+                        <i class="fas fa-chevron-circle-up"></i>
+                    </span>
+                </a>
+
+            </span>
+        </h5>
+        <!-- -->
+        <div class="row mb-3 mt-3">
+            <div class="col-12">
+                <!-- Conteudo -->
+                <div class="collapse" [id]="collapseId">
+
+                    <ng-content></ng-content>
+                </div>
+                <!-- fim Conteudo -->
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+<piweb-tabela [paginaResultado]="historicoAlteracao" [numeroPaginaAtual]="numeroPaginaAtual"
+              (novaPaginaEvt)="novaPagina($event)" (ordenarColuna)="ordenar($event)" exibirLimiteLinhas="true"
+              [linhasPorPagina]="[10,20,50]" collapseTitle="Histórico de Alteração">
+
+  <ng-template piwebColuna="dadoAnterior" let-valor tituloColuna="Dado Anterior">
+    {{valor | formatarData:'dd/MM/yyyy HH:mm:ss'}}
+  </ng-template>
+
+  <ng-template piwebColuna="dadoAtual" let-valor tituloColuna="Dado Atual">
+    {{valor | formatarData:'dd/MM/yyyy HH:mm:ss'}}
+  </ng-template>
+
+  <ng-template piwebColuna="dataAlteracaoDadoAtual" let-valor tituloColuna="Data Alteração">
+    {{valor}}
+  </ng-template>
+
+  <ng-template piwebColuna="usuarioResponsavelAlteracao" let-valor tituloColuna="Usuário Responsável pela Alteração">
+    {{valor}}
+  </ng-template>
+
+  <ng-template piwebColuna="empresaResponsavelAlteracao" let-valor tituloColuna="Empresa Responsável pela Alteração">
+    {{valor}}
+  </ng-template>
+
+</piweb-tabela>

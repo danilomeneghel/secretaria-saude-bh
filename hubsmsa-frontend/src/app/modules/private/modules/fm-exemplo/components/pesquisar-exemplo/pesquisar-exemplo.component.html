@@ -1,0 +1,79 @@
+<piweb-container-padrao titulo="Consulta de Exemplo">
+  <piweb-identificador-obrigatoriedade>
+    Preencha pelo menos um dos filtros para realizar a pesquisa.
+  </piweb-identificador-obrigatoriedade>
+
+  <form [formGroup]="formPesquisa">
+
+    <div class="row mb-3">
+
+      <div class="col-md-2 text-right">
+        <label for="codigo">Código</label>
+      </div>
+      <div class="col-md-4">
+        <input type="text" formControlName="codigo" id="codigo" class="form-control" maxlength="4">
+      </div>
+
+      <div class="col-md-2 text-right">
+        <label for="nomeExemplo">Nome do Exemplo</label>
+      </div>
+      <div class="col-md-4">
+        <input type="text" formControlName="nomeExemplo" id="nomeExemplo" class="form-control" maxlength="100">
+      </div>
+
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-2 text-right">
+        <label for="status">Status</label>
+      </div>
+
+      <div class="col-md-4">
+        <app-input-radio-list [listaRadioModel]="dataSourceStatusRadio" id="status" formControlName="status">
+        </app-input-radio-list>
+      </div>
+    </div>
+
+    <piweb-barra-acoes>
+      <button piweb-btn-primario type="submit" (click)="btnPesquisar()"
+        [identificadorPermissao]="[permissaoEnum.CADASTRO_PESQUISAREXEMPLO, permissaoEnum.CADASTRO_MANTEREXEMPLO]">Pesquisar</button>
+      <button piweb-btn-secundario (click)="limpar()">Limpar</button>
+      <button piweb-btn-secundario routerLink="cadastrar"
+        [identificadorPermissao]="[permissaoEnum.CADASTRO_MANTEREXEMPLO]">Incluir</button>
+      <button piweb-btn-voltar title="Voltar" class="btn" routerLink="/admin">Voltar</button>
+    </piweb-barra-acoes>
+
+  </form>
+</piweb-container-padrao>
+
+
+<piweb-tabela [paginaResultado]="resultadoPaginaAtual" [numeroPaginaAtual]="paginaAtualCfg.pagina"
+              (novaPaginaEvt)="btnPesquisar($event)" (ordenarColuna)="ordenar($event)" exibirLimiteLinhas="true"
+              [linhasPorPagina]="[20,40,60]">
+
+  <ng-template piwebColuna="codigo" let-valor tituloColuna="Código">
+    {{valor}}
+  </ng-template>
+
+  <ng-template piwebColuna="nomeExemplo" let-valor tituloColuna="Nome da Exemplo">
+    {{valor}}
+  </ng-template>
+
+  <ng-template piwebColuna="formaCadastro" let-valor tituloColuna="Forma de Cadastro">
+    {{valor | enumTradutor:formaCadastroMsg}}
+  </ng-template>
+
+  <ng-template piwebColuna="dataAtualizacao" let-valor tituloColuna="Data Atualização">
+    {{valor}}
+  </ng-template>
+
+  <ng-template piwebColuna="status" let-valor tituloColuna="Status">
+    <span class="badge"
+      [ngClass]="valor === 'A' ? 'badge-success':'badge-info'">{{valor | enumTradutor:statusEnumMsg}}</span>
+  </ng-template>
+
+  <ng-template piwebColuna="id" let-valor bodyClass="text-right">
+    <button piweb-tabela-botao icone="fas fa-eye text-success" [routerLink]="['editar', valor]"></button>
+  </ng-template>
+
+</piweb-tabela>

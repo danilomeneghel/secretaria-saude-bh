@@ -1,0 +1,29 @@
+<div class="text-center">
+
+  <form class="form-signin" [formGroup]="formLogin">
+    <img class="mb-4" src="/assets/img/logo-g.png" alt="" width="330">
+    <h1 class="h3 mb-3 font-weight-normal">ACESSO RESTRITO</h1>
+
+    <div class="offset-md-1 col-md-10 form-login">
+      <div class="ngc-alert-container"></div>
+      <label for="inputUser" class="sr-only">Usuário</label>
+      <input type="text" id="inputUser" class="form-control" formControlName="usuario" placeholder="Usuário" autofocus
+        name="Usuário">
+
+
+      <label for="inputPassword" class="sr-only">Senha</label>
+      <input type="password" id="inputPassword" class="form-control" placeholder="Senha" name="Senha"
+        formControlName="senha">
+
+
+      <button class="btn btn-lg btn-primary btn-block" type="button" (click)="doLogin()">Logar</button>
+      <div class="text-center">
+        <a href="https://trocasenha.pbh.gov.br" target="_blank" class="btn btn-link" id="btn-link-remember">Esqueci
+          Minha
+          Senha</a>
+      </div>
+    </div>
+
+    <p class="mt-5 mb-3 text-muted">@ 2019 - Prefeitura Municipal de Belo Horizonte</p>
+  </form>
+</div>

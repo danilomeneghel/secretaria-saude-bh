@@ -1,0 +1,121 @@
+<piweb-container-padrao titulo="Visualização de De/Para">
+  <div id="visualizar2">
+
+    <div class="row mb-3">
+
+      <div class="col-md-2 text-right">
+        <label>Tipo de De/Para</label>
+      </div>
+      <div class="col-md-4">
+        {{ dePara?.nomeTipoDePara }}
+      </div>
+
+    </div>
+
+    <div class="row mb-3">
+
+      <div class="col-md-2 text-right">
+        <label>Nome do De/Para</label>
+      </div>
+      <div class="col-md-4">
+        {{ dePara?.nomeDePara }}
+      </div>
+
+    </div>
+
+    <div class="row mb-3">
+
+      <div class="col-md-2 text-right">
+        <label>De/Para Ativo ?</label>
+      </div>
+
+      <div class="col-md-4">
+        {{ dePara?.status }}
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <h4>Dados do Sistema Primario</h4>
+      </div>
+    </div>    <div class="row mb-3">
+
+      <div class="col-md-2 text-right">
+        <label>Empresa</label>
+      </div>
+      <div class="col-md-4">
+        {{ dePara?.sistemaPrimario?.nomeEmpresa}}
+      </div>
+
+      <div class="col-md-2 text-right">
+        <label>Sistema</label>
+      </div>
+      <div class="col-md-4">
+        {{ dePara?.sistemaPrimario?.nomeSistema  }}
+      </div>
+
+    </div>
+
+    <div class="row mb-3" *ngFor="let item of dePara?.sistemaPrimario.camposDePara;">
+
+      <div class="col-md-2 text-right">
+        <label>Código</label>
+      </div>
+      <div class="col-md-4">
+        {{ item?.codigo  }}
+      </div>
+
+      <div class="col-md-2 text-right">
+        <label>Descrição</label>
+      </div>
+      <div class="col-md-4">
+        {{ item?.descricao  }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <h4>Dados do Sistema Secundário</h4>
+      </div>
+    </div>    <div class="row mb-3">
+
+      <div class="col-md-2 text-right">
+        <label>Empresa</label>
+      </div>
+      <div class="col-md-4">
+        {{ dePara?.sistemaSecundario?.nomeEmpresa}}
+      </div>
+
+      <div class="col-md-2 text-right">
+        <label>Sistema</label>
+      </div>
+      <div class="col-md-4">
+        {{ dePara?.sistemaSecundario?.nomeSistema  }}
+      </div>
+
+    </div>
+
+    <div class="row mb-3" *ngFor="let item of dePara?.sistemaSecundario.camposDePara;">
+
+      <div class="col-md-2 text-right">
+        <label>Código</label>
+      </div>
+      <div class="col-md-4">
+        {{ item?.codigo  }}
+      </div>
+
+      <div class="col-md-2 text-right">
+        <label>Descrição</label>
+      </div>
+      <div class="col-md-4">
+        {{ item?.descricao  }}
+      </div>
+    </div>
+
+  </div>
+
+  <piweb-barra-acoes>
+    <button piweb-btn-voltar title="Voltar" class="btn" (click)="voltar()">Voltar</button>
+  </piweb-barra-acoes>
+</piweb-container-padrao>

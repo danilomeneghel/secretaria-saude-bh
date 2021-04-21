@@ -1,0 +1,206 @@
+<piweb-container-padrao titulo="De/Para">
+  <piweb-identificador-obrigatoriedade>
+    Preencha pelo menos um dos filtros para realizar a pesquisa.
+  </piweb-identificador-obrigatoriedade>
+
+  <form [formGroup]="formPesquisa">
+    <div class="row mb-1">
+      <div class="col-md-2 text-md-right">
+        <label for="idTipoDePara">Tipo de De/Para</label>
+      </div>
+      <div class="col-md-4">
+        <select class="form-control" formControlName="idTipoDePara" id="idTipoDePara">
+          <option [ngValue]="null">Selecione...</option>
+          <option [ngValue]="tipoDePara?.id" *ngFor="let tipoDePara of listaTipoDeParaObs | async">
+            {{tipoDePara?.nome}}
+        </select>
+      </div>
+
+      <div class="col-md-2 text-right">
+        <label for="nome">Nome do De/Para</label>
+      </div>
+      <div class="col-md-4">
+        <input type="text" psappContadorMaxlength="100" formControlName="nomeDePara" id="nome" class="form-control"
+          maxlength="100">
+      </div>
+    </div>
+    <div class="row mb-1">
+      <div class="col-md-2 text-right">
+        <label for="status">De/Para Ativo?</label>
+      </div>
+      <div class="col-md-4">
+        <input-lista-checkbox [listaCheckboxModel]="opcoesCheckboxStatus" id="status" formControlName="status">
+        </input-lista-checkbox>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <h4>Dados do Sistema Primário</h4>
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-md-2 text-md-right">
+        <label for="idEmpresaPrimaria">Empresa</label>
+      </div>
+      <div class="col-md-4">
+        <select class="form-control" formControlName="idEmpresaPrimaria" id="idEmpresaPrimaria">
+          <option [ngValue]="null">Selecione...</option>
+          <option [ngValue]="empresaPri?.id" *ngFor="let empresaPri of listaEmpresasObs | async">
+            {{empresaPri?.nomeFantasia}}
+        </select>
+      </div>
+      <div class="col-md-2 text-md-right">
+        <label for="idSistemaPrimario">Sistema</label>
+      </div>
+      <div class="col-md-4">
+        <select class="form-control" formControlName="idSistemaPrimario" id="idSistemaPrimario">
+          <option [ngValue]="null">Selecione...</option>
+          <option [ngValue]="sistemaPri?.id" *ngFor="let sistemaPri of listaSistemasPriObs | async">
+            {{sistemaPri?.descricao}}
+        </select>
+      </div>
+    </div>
+    <div formArrayName="listaDeParaPrimario"
+      *ngFor="let item of formPesquisa.get('listaDeParaPrimario')['controls']; let i = index;">
+
+      <div class="row mb-1" [formGroupName]="i">
+
+        <div class="col-md-2 text-right">
+          <label for="codigo">Código</label>
+        </div>
+        <div class="col-md-4">
+          <input type="text" psappContadorMaxlength="10" formControlName="codigo" id="codigoPrimario{{i}}" class="form-control"
+            maxlength="10">
+        </div>
+        <div class="col-md-2 text-right">
+          <label for="descricao">Descrição</label>
+        </div>
+        <div class="col-md-3">
+          <input type="text" psappContadorMaxlength="100" formControlName="descricao" id="descricaoPrimario{{i}}"
+            class="form-control" maxlength="100">
+        </div>
+
+        <div class="col-md-1" class="coluna-de-botoes">
+
+          <button *ngIf="i === tamanhoDoFormularioPrimario()-1 || tamanhoDoFormularioPrimario() === 1"
+            piweb-btn-icone="fas fa-plus text-dark" title="Abrir Consulta" (click)="addDeParaPrimario()"></button>
+
+
+          <button *ngIf="i>0 && i<tamanhoDoFormularioPrimario()" piweb-btn-icone="fas fa-minus text-dark"
+            title="Abrir Consulta." (click)="removerDeParaPrimario(i)"></button>
+
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <h4>Dados do Sistema Secundário</h4>
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-md-2 text-md-right">
+        <label for="idEmpresaSecundaria">Empresa</label>
+      </div>
+      <div class="col-md-4">
+        <select class="form-control" formControlName="idEmpresaSecundaria" id="idEmpresaSecundaria">
+          <option [ngValue]="null">Selecione...</option>
+          <option [ngValue]="empresaSec?.id" *ngFor="let empresaSec of listaEmpresasObs | async">
+            {{empresaSec?.nomeFantasia}}
+        </select>
+      </div>
+      <div class="col-md-2 text-md-right">
+        <label for="idSistemaSecundario">Sistema</label>
+      </div>
+      <div class="col-md-4">
+        <select class="form-control" formControlName="idSistemaSecundario" id="idSistemaSecundario">
+          <option [ngValue]="null">Selecione...</option>
+
+          <option [ngValue]="sistemaSec?.id" *ngFor="let sistemaSec of listaSistemasSecObs | async">
+            {{sistemaSec?.descricao}}
+        </select>
+      </div>
+    </div>
+    <div formArrayName="listaDeParaSecundario"
+      *ngFor="let item of formPesquisa.get('listaDeParaSecundario')['controls']; let i = index;">
+      <div class="row mb-1" [formGroupName]="i">
+        <div class="col-md-2 text-right">
+          <label for="codigo">Código</label>
+        </div>
+        <div class="col-md-4">
+          <input type="text" psappContadorMaxlength="10" formControlName="codigo" id="codigoSecundario{{i}}" class="form-control"
+            maxlength="10">
+        </div>
+        <div class="col-md-2 text-right">
+          <label for="descricao">Descrição</label>
+        </div>
+        <div class="col-md-3">
+          <input type="text" psappContadorMaxlength="100" formControlName="descricao" id="descricaoSecundario{{i}}"
+            class="form-control" maxlength="100">
+        </div>
+        <div class="col-md-1" class="coluna-de-botoes">
+
+          <button *ngIf="i === tamanhoDoFormularioSecundario()-1 || tamanhoDoFormularioSecundario() === 1"
+            piweb-btn-icone="fas fa-plus text-dark" title="Abrir Consulta" (click)="addDeParaSecundario()"></button>
+
+
+          <button *ngIf="i>0 && i<tamanhoDoFormularioSecundario()" piweb-btn-icone="fas fa-minus text-dark"
+            title="Abrir Consulta." (click)="removerDeParaSecundario(i)"></button>
+
+        </div>
+      </div>
+    </div>
+
+    <piweb-barra-acoes class="mt-3">
+      <button piweb-btn-primario type="submit" (click)="btnPesquisar()"
+        *verificadorPermissao="[permissaoEnum.CADASTROS_DEPARA_CONSULTAR]">Pesquisar</button>
+      <button piweb-btn-secundario (click)="limpar()">Limpar</button>
+      <button piweb-btn-secundario routerLink="cadastrar"
+        *verificadorPermissao="[permissaoEnum.CADASTROS_DEPARA_CADASTRAR]" routerLink="cadastrar">Incluir</button>
+      <button piweb-btn-voltar title="Voltar" class="btn" routerLink="/admin">Voltar</button>
+    </piweb-barra-acoes>
+
+  </form>
+</piweb-container-padrao>
+
+<piweb-tabela
+  [exibirBotoesExportarDados]="true"
+  [gerarCsv]="gerarCsv.bind(this)"
+  [gerarExcel]="gerarExcel.bind(this)"
+  [paginaResultado]="resultadoPaginaAtual"
+  [numeroPaginaAtual]="paginaAtualCfg.pagina"
+  (novaPaginaEvt)="btnPesquisar($event)"
+  (ordenarColuna)="ordenar($event)"
+  exibirLimiteLinhas="true"
+  [linhasPorPagina]="[20,40,60]">
+
+  <ng-template piwebColuna="nomeTipoDePara" let-nomeTipoDePara tituloColuna="Tipo de De/Para">
+    {{ nomeTipoDePara }}
+  </ng-template>
+  <ng-template piwebColuna="nomeDePara" let-nomeDePara tituloColuna="Nome">
+    {{ nomeDePara }}
+  </ng-template>
+  <ng-template piwebColuna="sistemaPrimario" let-sistemaPrimario tituloColuna="Empresa/Sistema Primário">
+    {{ sistemaPrimario }}
+  </ng-template>
+  <ng-template piwebColuna="sistemaSecundario" let-sistemaSecundario tituloColuna="Empresa/Sistema Secundário">
+    {{ sistemaSecundario }}
+  </ng-template>
+  <ng-template piwebColuna="codigosPrimarios" let-codigosPrimarios tituloColuna="Código Primário" esconderOrdenacao="true">
+    {{ codigosPrimarios }}
+  </ng-template>
+  <ng-template piwebColuna="codigosSecundarios" let-codigosSecundarios tituloColuna="Código Secundário" esconderOrdenacao="true">
+    {{ codigosSecundarios }}
+  </ng-template>
+
+  <ng-template piwebColuna="id" let-valor bodyClass="text-right">
+    <button piweb-tabela-botao icone="fas fa-eye text-success mr-2"
+      *verificadorPermissao="[permissaoEnum.CADASTROS_DEPARA_CONSULTAR]" [routerLink]="['visualizar', valor]"  title="Visualizar"></button>
+    <button piweb-tabela-botao icone="fas fa-pencil-alt text-primary mr-2"
+      *verificadorPermissao="[permissaoEnum.CADASTROS_DEPARA_EDITAR]" [routerLink]="['editar', valor]"
+      title="Editar"></button>
+    <button piweb-tabela-botao icone="fas fa-trash-alt text-danger mr-2"
+      *verificadorPermissao="[permissaoEnum.CADASTROS_DEPARA_EXCLUIR]" title="Excluir"
+      (click)="excluirDePara(valor)"></button>
+  </ng-template>
+
+</piweb-tabela>

@@ -1,0 +1,205 @@
+<piweb-container-padrao [titulo]="titulo">
+  <piweb-identificador-obrigatoriedade>
+  </piweb-identificador-obrigatoriedade>
+
+  <form [formGroup]="formPrincipal">
+    <div class="row mb-1">
+      <div class="col-md-2 text-md-right">
+        <label for="idTipoDePara" class="obrigatorio">Tipo de De/Para</label>
+      </div>
+      <div class="col-md-3">
+        <select class="form-control" formControlName="idTipoDePara" id="idTipoDePara">
+          <option [ngValue]="null">Selecione...</option>
+          <option [ngValue]="tipoDePara.id" *ngFor="let tipoDePara of listaTipoDeParaObs | async">
+            {{tipoDePara?.descricao}}
+        </select>
+      </div>
+
+      <div class="col-md-2 text-right">
+        <label for="nome" class="obrigatorio">Nome do De/Para</label>
+      </div>
+      <div class="col-md-4">
+        <input type="text" psappContadorMaxlength="100" formControlName="nome" id="nome" class="form-control"
+          maxlength="100">
+      </div>
+    </div>
+    <div class="row mb-1">
+      <div class="col-md-2 text-right">
+        <label for="status" class="obrigatorio">De/Para Ativo?</label>
+      </div>
+      <div class="col-md-3">
+        <app-input-radio-list [listaRadioModel]="dataSourceStatusRadio" id="status" formControlName="status">
+        </app-input-radio-list>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <h4>Dados do Sistema Primário</h4>
+      </div>
+    </div>
+    <div class="row mb-1">
+      <div class="col-md-2 text-md-right">
+        <label for="idEmpresaPrimaria" class="obrigatorio">Empresa</label>
+      </div>
+      <div class="col-md-3">
+        <select class="form-control" formControlName="idEmpresaPrimaria" id="idEmpresaPrimaria">
+          <option [ngValue]="null">Selecione...</option>
+          <option [ngValue]="empresaPri?.id" *ngFor="let empresaPri of listaEmpresasObs | async">
+            {{empresaPri?.descricao}}
+        </select>
+      </div>
+      <div class="col-md-2 text-md-right">
+        <label for="idSistemaPrimario" class="obrigatorio">Sistema</label>
+      </div>
+      <div class="col-md-4">
+        <select class="form-control" formControlName="idSistemaPrimario" id="idSistemaPrimario">
+          <option [ngValue]="null">Selecione...</option>
+          <option [ngValue]="sistemaPri?.id" *ngFor="let sistemaPri of listaSistemasPriObs | async">
+            {{sistemaPri?.descricao}}
+        </select>
+      </div>
+    </div>
+
+
+    <div formArrayName="listaDeParaPrimario"
+      *ngFor="let item of formPrincipal.get('listaDeParaPrimario')['controls']; let i = index;">
+
+      <piweb-linha-detalhe [formGroupName]="i">
+        <div class="row mb-1" >
+
+          <input type="hidden" formControlName="id" id="idPrimario{{i}}">
+
+          <div class="col-md-2 text-right">
+            <label for="codigo" class="obrigatorio">Código</label>
+          </div>
+
+          <div class="col-md-2">
+            <input type="text" psappContadorMaxlength="10" formControlName="codigo" id="codigoPrimario{{i}}"
+              class="form-control" maxlength="10">
+          </div>
+          <div class="col-md-1">
+            <a [tooltip]="'Código do Item no Sistema Primário'" class="">
+              <i for="nome" class="fas fa-question-circle ajuste-tooltip"></i>
+            </a>
+          </div>
+
+          <div class="col-md-2 text-right">
+            <label for="descricao" class="obrigatorio">Descrição</label>
+          </div>
+
+          <div class="col-md-3">
+            <input type="text" psappContadorMaxlength="100" formControlName="descricao" id="descricaoPrimario{{i}}"
+                class="form-control" maxlength="100">
+          </div>
+
+          <div class="btn">
+            <a [tooltip]="'Descrição do Item no Sistema Primário'" class="">
+              <i for="nome" class="fas fa-question-circle ajuste-tooltip"></i>
+            </a>
+          </div>
+
+          <div class="">
+            <button *ngIf="i === tamanhoDoFormularioPrimario()-1 || tamanhoDoFormularioPrimario() === 1"
+                piweb-btn-icone="fas fa-plus text-dark" class="" title=""
+                (click)="addDeParaPrimario(item, i)"></button>
+
+            <button *ngIf="i>0 && i<tamanhoDoFormularioPrimario()" piweb-btn-icone="fas fa-minus text-dark"
+              class="" title="" (click)="removerDeParaPrimario(i)"></button>
+          </div>
+
+        </div>
+
+      </piweb-linha-detalhe>
+
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-12">
+        <h4>Dados do Sistema Secundário</h4>
+      </div>
+    </div>
+    <div class="row mb-1">
+      <div class="col-sm-2 text-md-right">
+        <label for="idEmpresaSecundaria" class="obrigatorio">Empresa</label>
+      </div>
+      <div class="col-md-3">
+        <select class="form-control" formControlName="idEmpresaSecundaria" id="idEmpresaSecundaria">
+          <option [ngValue]="null">Selecione...</option>
+          <option [ngValue]="empresaSec?.id" *ngFor="let empresaSec of listaEmpresasObs | async">
+            {{empresaSec?.descricao}}
+        </select>
+      </div>
+      <div class="col-md-2 text-md-right">
+        <label for="idSistemaSecundario" class="obrigatorio">Sistema</label>
+      </div>
+      <div class="col-md-4">
+        <select class="form-control" formControlName="idSistemaSecundario" id="idSistemaSecundario">
+          <option [ngValue]="null">Selecione...</option>
+          <option [ngValue]="sistemaSec?.id" *ngFor="let sistemaSec of listaSistemasSecObs | async">
+            {{sistemaSec?.descricao}}
+        </select>
+      </div>
+    </div>
+
+
+    <div
+      formArrayName="listaDeParaSecundario"
+      *ngFor="let item of formPrincipal.get('listaDeParaSecundario')['controls']; let i = index;">
+      <piweb-linha-detalhe [formGroupName]="i">
+        <div class="row mb-1">
+
+          <input type="hidden" formControlName="id" id="idSecundario{{i}}">
+
+          <div class="col-md-2 text-right">
+            <label for="codigo" class="obrigatorio">Código</label>
+          </div>
+
+          <div class="col-md-2">
+            <input type="text" psappContadorMaxlength="10" formControlName="codigo" id="codigoSecundario{{i}}"
+              class="form-control" maxlength="10">
+          </div>
+
+          <div class="col-md-1">
+            <a [tooltip]="'Código do Item no Sistema Secundário'" class="">
+              <i for="nome" class="fas fa-question-circle ajuste-tooltip"></i>
+            </a>
+          </div>
+
+          <div class="col-md-2 text-right">
+            <label for="descricao" class="obrigatorio">Descrição</label>
+          </div>
+
+          <div class="col-md-3">
+            <input type="text" psappContadorMaxlength="100" formControlName="descricao" id="descricaoSecundario{{i}}"
+              class="form-control" maxlength="100">
+          </div>
+
+          <div class="btn">
+            <a [tooltip]="'Descrição do Item no Sistema Secundário'" class="">
+              <i for="nome" class="fas fa-question-circle ajuste-tooltip"></i>
+            </a>
+          </div>
+
+          <div class="">
+            <button *ngIf="i === tamanhoDoFormularioSecundario()-1 || tamanhoDoFormularioSecundario() === 1"
+              piweb-btn-icone="fas fa-plus text-dark" class="" title=""
+              (click)="addDeParaSecundario()"></button>
+
+            <button *ngIf="i>0 && i<tamanhoDoFormularioSecundario()" piweb-btn-icone="fas fa-minus text-dark"
+              class="" title="" (click)="removerDeParaSecundario(i)"></button>
+          </div>
+
+        </div>
+      </piweb-linha-detalhe>
+    </div>
+
+
+    <piweb-barra-acoes class="mt-3">
+      <button piweb-btn-primario type="submit" (click)="salvarDePara()"
+        [identificadorPermissao]="[permissaoEnum.CADASTRO_MANTEREXEMPLO]">Salvar</button>
+      <button piweb-btn-voltar title="Voltar" class="btn" (click)="voltar()">Voltar</button>
+    </piweb-barra-acoes>
+
+  </form>
+</piweb-container-padrao>

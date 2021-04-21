@@ -1,0 +1,53 @@
+version: "3.6"
+services:
+  backend:
+    image: nexus-imagens.pbh.gov.br/prodabel/hubsmsa-backend-prd:latest
+    environment:
+      - "JAVA_OPTS=$JAVA_OPTS -Xms1024m -Xmx4096m -XX:MetaspaceSize=96M -XX:MaxMetaspaceSize=512m -Denv=prd -Djava.net.preferIPv4Stack=true -Djboss.modules.system.pkgs=$JBOSS_MODULES_SYSTEM_PKGS -Djava.awt.headless=true -Dresteasy.preferJacksonOverJsonB=true"
+      - "URL_APLICACAO=https://hubsmsa.pbh.gov.br/"
+    networks:
+      - traefik_net
+    ports:
+      - 80
+    secrets:
+      - source: hubsmsa..jdbc_config..202005251140
+        target: /run/secrets/hubsmsa
+    configs:
+      - source: hubsmsa-backend-prd..KEYCLOAK..202012231122
+        target: /run/configs/keycloak
+    deploy:
+      restart_policy:
+        condition: any
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.role == worker]
+      update_config:
+        delay: 2s
+      labels:
+        - traefik.docker.network=traefik_net
+        - traefik.port=8080
+        - traefik.frontend.rule=Host:hubsmsa.pbh.gov.br; PathPrefix:/hubsmsa-backend
+        - traefik.backend.loadbalancer.stickiness=true
+      resources:
+        reservations:
+          cpus: '1'
+          memory: 512M
+        limits:
+          cpus: '1'
+          memory: 1024M
+    logging:
+      driver: gelf
+      options:
+        gelf-address: udp://172.18.30.67:12201
+        tag: hubsmsa-backend-prd
+networks:
+  traefik_net:
+    external:
+      name: traefik_net
+secrets:
+  hubsmsa..jdbc_config..202005251140:
+    external: true
+configs:
+  hubsmsa-backend-prd..KEYCLOAK..202012231122:
+    external: true

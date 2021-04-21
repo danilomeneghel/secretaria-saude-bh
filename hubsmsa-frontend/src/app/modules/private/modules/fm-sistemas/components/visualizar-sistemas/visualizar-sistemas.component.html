@@ -1,0 +1,51 @@
+<piweb-container-padrao titulo="Visualização de Sistemas">
+  <div id="visualizar2">
+    <div class="row mb-3">
+
+      <div class="col-md-2 text-right">
+        <label>Nome </label>
+      </div>
+      <div class="col-md">
+        {{ sistema?.nome }}
+      </div>
+
+    </div>
+
+    <div class="row mb-3">
+
+      <div class="col-md-2 text-right">
+        <label> Empresa</label>
+      </div>
+      <div class="col-md">
+        {{ sistema?.empresa?.nomeFantasia }}
+      </div>
+
+    </div>
+    <div class="row mb-3">
+
+      <div class="col-md-2 text-right">
+        <label>Descrição</label>
+      </div>
+      <div class="col-md">
+        {{ sistema?.descricao }}
+      </div>
+
+    </div>
+
+    <div class="row mb-3">
+
+      <div class="col-md-2 text-right">
+        <label>Ativo ?</label>
+      </div>
+
+      <div class="col-md">
+        {{ sistema?.status | enumTradutor:statusEnum}}
+      </div>
+
+    </div>
+  </div>
+
+  <piweb-barra-acoes>
+    <button piweb-btn-voltar title="Voltar" class="btn" (click)="voltar()">Voltar</button>
+  </piweb-barra-acoes>
+</piweb-container-padrao>

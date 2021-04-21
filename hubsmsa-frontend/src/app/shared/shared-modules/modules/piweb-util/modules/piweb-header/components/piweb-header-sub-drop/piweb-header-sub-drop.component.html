@@ -1,0 +1,6 @@
+<div class="dropdown-submenu" [class.d-none]="!possuiSubmenu">
+  <a href="#" class="dropdown-item link-submenu dropdown-toggle">{{titulo}}</a>
+  <div class="dropdown-menu" #submenuParent>
+    <ng-content></ng-content>
+  </div>
+</div>

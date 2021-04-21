@@ -1,0 +1,73 @@
+<piweb-header tituloAplicacao="Hub de Servicos - Sec. Saude de Belo Horizonte - MG">
+
+  <div class="navbar-brand">
+    <img src="../../../../../assets/img/logo-g.png" height="55" alt="Logo" />
+  </div>
+
+  <piweb-header-menu-bar>
+
+    <piweb-header-dropdown titulo="Cadastros">
+      <!-- <a piweb-header-dropdown-link [routerLink]="['exemplo']" routerLinkActive="active">
+        Exemplo
+      </a> -->
+      <a piweb-header-dropdown-link [routerLink]="['empresas']" routerLinkActive="active">
+        Empresas
+      </a>
+      <a piweb-header-dropdown-link [routerLink]="['contato-empresas']" routerLinkActive="active">
+        Contatos das Empresas
+      </a>
+      <a piweb-header-dropdown-link [routerLink]="['sistemas']" routerLinkActive="active">
+        Sistemas das Empresas
+      </a>
+      <a piweb-header-dropdown-link [routerLink]="['tipos-de-para']" routerLinkActive="active">
+        Tipos de De/Para
+      </a>
+      <a piweb-header-dropdown-link [routerLink]="['de-para']" routerLinkActive="active">
+        De/Para
+      </a>
+      <a piweb-header-dropdown-link [routerLink]="['contato-empresa-servico']" routerLinkActive="active">
+        Associação de Contatos da Empresa a Notificação de Serviços
+      </a>
+    </piweb-header-dropdown>
+
+    <piweb-header-dropdown titulo="Logs">
+      <a piweb-header-dropdown-link [routerLink]="['log-acesso-usuario']" routerLinkActive="active">
+        Acessos de Usuários
+      </a>
+      <a piweb-header-dropdown-link [routerLink]="['log-empresas']" routerLinkActive="active">
+        Empresas
+      </a>
+      <a piweb-header-dropdown-link [routerLink]="['log-contato-empresas']" routerLinkActive="active">
+        Contatos das Empresas
+      </a>
+      <a piweb-header-dropdown-link [routerLink]="['log-sistemas']" routerLinkActive="active">
+        Sistemas das Empresas
+      </a>
+      <a piweb-header-dropdown-link [routerLink]="['log-tipo-de-para']" routerLinkActive="active">
+        Tipos de De/Para
+      </a>
+      <a piweb-header-dropdown-link [routerLink]="['log-de-para']" routerLinkActive="active">
+        De/Para
+      </a>
+      <a piweb-header-dropdown-link [routerLink]="['log-de-servicos']" routerLinkActive="active">
+        Processamento de Serviços
+      </a>
+
+    </piweb-header-dropdown>
+
+    <piweb-header-dropdown customClass="usuario" titulo="<i class='fas fa-user-alt'></i>">
+
+      <span class="dropdown-item usuario-logado active">{{getUserName()}}</span>
+
+      <div class="dropdown-divider"></div>
+
+      <a class="dropdown-item cursor-pointer" (click)="sair()">
+        <i class="fas fa-sign-out-alt mr-2"></i>
+        Sair
+      </a>
+
+    </piweb-header-dropdown>
+
+  </piweb-header-menu-bar>
+
+</piweb-header>

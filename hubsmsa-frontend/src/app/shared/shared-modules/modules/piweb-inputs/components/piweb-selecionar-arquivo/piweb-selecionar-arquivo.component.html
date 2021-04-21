@@ -1,0 +1,22 @@
+<div class="d-md-flex align-items-center">
+
+  <div class="file-wrapper">
+    <div class="nome-arquivo" tabindex="0" [class.disabled]="disabled">
+          <span>{{arquivo.nomeArquivo || 'Escolha o arquivo'}}</span>
+    </div>
+
+    <div *ngIf="mostrarLixeira" class="trash-icon" [class.disabled]="disabled" [class.cursor-pointer]="!disabled"
+          (click)="removerValorElemento(arquivoRef)">
+      <i class="fas fa-trash-alt text-danger"></i>
+    </div>
+
+    <label for="file" class="label-file-custom" [class.disabled]="disabled">
+        SELECIONE
+    </label>
+
+    <input type="file" class="input-file" [attr.accept]="selecionarPorTipo"
+           id="file" (change)="fileInput($event)" #arquivoRef [disabled]="disabled">
+
+  </div>
+
+</div>

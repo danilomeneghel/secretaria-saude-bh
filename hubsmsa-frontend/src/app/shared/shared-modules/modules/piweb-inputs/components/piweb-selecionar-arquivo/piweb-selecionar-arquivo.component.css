@@ -1,0 +1,74 @@
+.file-wrapper {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.input-file {
+    height: calc(2.25rem + 2px);
+    opacity: 0;
+    width: 15%;
+    position: absolute;
+    right: 0;
+}
+
+.label-file-custom {
+    z-index: 3;
+    display: block;
+    height: 2.25rem;
+    padding: .375rem .75rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #e9ecef;
+    border-left: 1px solid #ced4da;
+    border-radius: 0 .25rem .25rem 0;
+}
+
+.label-file-custom {
+    text-transform: uppercase;
+    cursor: pointer;
+    font-size: 0.85em;
+    line-height: 1.80em;
+    background-color: #fff;
+    width: 15%;
+    border: 1px solid #ced4da;
+    border-left: none;
+    height: calc(2.25rem + 2px);
+    min-width: fit-content;
+    float: left;
+}
+
+.nome-arquivo {
+    font-size: 14px;
+    word-break: break-all;
+
+    top: 0;
+    right: 0;
+    left: 0;
+    float: left;
+    z-index: 1;
+    height: calc(2.25rem + 2px);
+    padding: .375rem .75rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    width: 75%;
+    overflow: hidden;
+}
+
+.trash-icon {
+    float: left;
+    width: 7%;
+    border: 1px solid #ced4da;
+    border-left: none;
+    height: calc(2.25rem + 2px);
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.disabled {
+    background: #e9ecef;
+}
+

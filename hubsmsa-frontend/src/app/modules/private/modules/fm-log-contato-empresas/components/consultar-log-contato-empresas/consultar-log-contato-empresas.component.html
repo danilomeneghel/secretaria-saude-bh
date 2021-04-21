@@ -1,0 +1,99 @@
+<piweb-container-padrao titulo="Registros de Log de Contatos das Empresas">
+  <piweb-identificador-obrigatoriedade>
+    Preencha pelo menos um dos filtros para realizar a pesquisa.
+  </piweb-identificador-obrigatoriedade>
+
+  <form [formGroup]="formPesquisa">
+
+    <div class="row mb-1">
+      <div class="col-md-2 text-md-right">
+        <label>Data do Evento Inicial</label>
+      </div>
+      <div class="col-md-4">
+        <div class="input-group">
+          <input type="date" class="form-control" formControlName="dataInicial" id="dataInicial" placeholder="__/__/____" aria-label="Username" aria-describedby="basic-addon1" id="rotulo7">
+          <div class="input-group-prepend"> <span class="input-group-text" id="basic-addon1"><i class="far fa-calendar-alt"></i></span> </div>
+        </div>
+      </div>
+
+      <div class="col-md-2 text-md-right">
+        <label>Data do Evento Final</label>
+      </div>
+      <div class="col-md-4">
+        <div class="input-group">
+          <input type="date" class="form-control" formControlName="dataFinal" id="dataFinal" placeholder="__/__/____" aria-label="Username" aria-describedby="basic-addon1" id="rotulo7">
+          <div class="input-group-prepend"> <span class="input-group-text" id="basic-addon1"><i class="far fa-calendar-alt"></i></span> </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-1">
+      <div class="col-md-2 text-md-right">
+        <label for="idEmpresa" >Empresa</label>
+      </div>
+      <div class="col-md-4">
+        <select class="form-control" formControlName="idEmpresa" id="idEmpresa">
+          <option [ngValue]="null">Selecione...</option>
+          <option [ngValue]="empresa.id" *ngFor="let empresa of listaEmpresasObs | async">
+            {{empresa?.descricao}}
+          </option>
+        </select>
+      </div>
+      <div class="col-md-2 text-md-right">
+        <label for="nome">Nome do Contato</label>
+      </div>
+      <div class="col-md-4">
+        <input type="text" psappContadorMaxlength="100" formControlName="nome" id="nome" class="form-control"
+          maxlength="100">
+      </div>
+    </div>
+
+    <piweb-barra-acoes class="mt-3">
+      <button piweb-btn-primario type="submit" (click)="btnPesquisar()"
+        *verificadorPermissao="[permissaoEnum.CADASTROS_CONTATOEMPRESA_CONSULTAR]">Pesquisar</button>
+      <button piweb-btn-secundario (click)="limpar()">Limpar</button>
+      <button piweb-btn-voltar title="Voltar" class="btn" routerLink="/admin">Voltar</button>
+    </piweb-barra-acoes>
+
+  </form>
+</piweb-container-padrao>
+
+<piweb-tabela [exibirBotoesExportarDados]="true"
+  [gerarCsv]="gerarCsv.bind(this)"
+  [gerarExcel]="gerarExcel.bind(this)"
+  [paginaResultado]="resultadoTabelaHistoricoAlteracao"
+  [numeroPaginaAtual]="paginaAtualCfg.pagina"
+
+  (novaPaginaEvt)="btnPesquisar($event)" (ordenarColuna)="ordenar($event)"
+  exibirLimiteLinhas="true" [linhasPorPagina]="[5,10,15]">
+
+  <ng-template piwebColuna="dataAlteracaoDadoAtual" let-valor tituloColuna="Data do Evento">
+    {{valor.substring(0,16)}}
+  </ng-template>
+
+  <ng-template piwebColuna="usuarioResponsavelAlteracao" let-valor tituloColuna="Usuário">
+    {{valor}}
+  </ng-template>
+
+  <ng-template piwebColuna="empresa" let-valor tituloColuna="Empresa">
+    {{valor}}
+  </ng-template>
+
+  <ng-template piwebColuna="dadoAnterior" let-valor tituloColuna="Antes">
+    <span [ngClass]="valor === 'Contato Empresa Criado' ? 'italic':''">{{valor}}</span>
+  </ng-template>
+
+  <ng-template piwebColuna="dadoAtual" let-valor tituloColuna="Depois">
+    <span [ngClass]="valor === 'Contato Empresa Removido' ? 'italic':''">{{valor}}</span>
+  </ng-template>
+
+  <ng-template piwebColuna="idRevisao" let-valor tituloColuna="Rev." esconderOrdenacao="true">
+    <span class="align-center">{{valor}}</span>
+  </ng-template>
+
+  <ng-template piwebColuna="idRevisao" let-valor bodyClass="text-right">
+    <button piweb-tabela-botao icone="fas fa-eye text-success mr-2" [routerLink]="['visualizar', valor]"
+      *verificadorPermissao="[permissaoEnum.CADASTROS_CONTATOEMPRESA_CONSULTAR]" title="Visualizar"></button>
+  </ng-template>
+
+</piweb-tabela>

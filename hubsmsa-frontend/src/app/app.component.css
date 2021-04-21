@@ -1,0 +1,40 @@
+:host >>> .tooltip-inner {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+:host >>> .tooltip-10 .tooltip-inner {
+  max-width: 10%;
+}
+
+:host >>> .tooltip-20 .tooltip-inner {
+  max-width: 20%;
+}
+
+:host >>> .tooltip-30 .tooltip-inner {
+  max-width: 30%;
+}
+
+:host >>> .tooltip-40 .tooltip-inner {
+  max-width: 40%;
+}
+
+:host >>> .tooltip-50 .tooltip-inner {
+  max-width: 50%;
+}
+
+:host >>> .tooltip-60 .tooltip-inner {
+  max-width: 60%;
+}
+
+:host >>> .tooltip-70 .tooltip-inner {
+  max-width: 70%;
+}
+
+:host >>> .tooltip-80 .tooltip-inner {
+  max-width: 80%;
+}
+
+:host >>> .tooltip-90 .tooltip-inner {
+  max-width: 90%;
+}

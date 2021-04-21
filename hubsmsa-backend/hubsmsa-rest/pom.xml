@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>br.gov.pbh.prodabel</groupId>
+		<artifactId>hubsmsa</artifactId>
+		<version>1.1.18</version>
+	</parent>
+
+	<properties>
+		<swagger.version>2.0.0</swagger.version>
+	</properties> 
+
+	<artifactId>hubsmsa-rest</artifactId>
+	<packaging>war</packaging>
+
+	<name>hubsmsa-rest (Serviços REST)</name>
+	<description>Módulo responsável por fornecer os serviços REST da aplicação.</description>
+	 
+	<build>
+		<finalName>${project.artifactId}</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>${version.plugin.war}</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.liquibase</groupId>
+				<artifactId>liquibase-maven-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+			<plugin> 
+            	<groupId>org.apache.maven.plugins</groupId> 
+            	<artifactId>maven-release-plugin</artifactId> 
+            	<version>2.5.3</version> 
+            </plugin> 
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>br.gov.pbh.prodabel</groupId>
+			<artifactId>hubsmsa-service</artifactId>
+			<version>1.1.18</version>
+			<type>ejb</type>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+            <groupId>net.bull.javamelody</groupId>
+            <artifactId>javamelody-core</artifactId>
+            <version>1.72.0</version>
+        </dependency>
+		<!-- Swagger Core -->
+		<dependency>
+			<groupId>io.swagger.core.v3</groupId>
+			<artifactId>swagger-jaxrs2</artifactId>
+			<version>${swagger.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.swagger.core.v3</groupId>
+			<artifactId>swagger-jaxrs2-servlet-initializer</artifactId>
+			<version>${swagger.version}</version>
+		</dependency>
+	</dependencies>
+
+</project>

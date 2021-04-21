@@ -1,0 +1,9 @@
+**/.settings
+**/.project
+**/target
+.idea/
+*.iml
+*.classpath
+**/bin
+**/.scannerwork
+**.scannerwork/

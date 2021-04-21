@@ -1,0 +1,41 @@
+version: "3.1"
+services:
+  frontend:
+    image: nexus-imagens.pbh.gov.br/prodabel/hubsmsa-frontend-qa:latest
+    logging:
+      driver: gelf
+      options:
+        gelf-address: udp://10.0.24.27:12201
+        tag: hubsmsa-frontend-qa
+    networks:
+      - traefik_net
+    ports:
+      - 80
+    deploy:
+      restart_policy:
+        condition: any
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.role == worker]
+      update_config:
+        delay: 2s
+      labels:
+        - "traefik.docker.network=traefik_net"
+        - "traefik.port=80"
+        - "traefik.frontend.rule=Host:hubsmsa.qa.pbh"
+        - "traefik.backend.loadbalancer.stickiness=true"
+      resources:
+        limits:
+          cpus: '0.10'
+          memory: 128M
+        reservations:
+          cpus: '0.10'
+          memory: 128M
+networks:
+  traefik_net:
+    external:
+      name: traefik_net
+secrets:
+  hubsmsa_adm:
+    external: true

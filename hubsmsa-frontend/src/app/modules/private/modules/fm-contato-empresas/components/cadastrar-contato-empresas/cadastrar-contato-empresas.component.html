@@ -1,0 +1,97 @@
+<piweb-container-padrao [titulo]="titulo">
+  <piweb-identificador-obrigatoriedade>
+  </piweb-identificador-obrigatoriedade>
+
+  <form [formGroup]="formPrincipal">
+
+    <div class="row mb-1">
+      <div class="col-md-2 text-md-right">
+        <label for="idEmpresa" class="obrigatorio">Empresa</label>
+      </div>
+      <div class="col-md-4">
+        <select class="form-control" formControlName="idEmpresa" id="idEmpresa">
+          <option [ngValue]="null">Selecione...</option>
+          <option [ngValue]="empresa.id" *ngFor="let empresa of listaEmpresasObs | async">
+            {{empresa.descricao}}
+        </select>
+      </div>
+    </div>
+
+
+    <div class="row mb-1">
+      <div class="col-md-2 text-right">
+        <label for="nome" class="obrigatorio">Nome do Contato</label>
+      </div>
+      <div class="col-md-4">
+        <input type="text" psappContadorMaxlength="100" formControlName="nome" id="nome" class="form-control"
+          maxlength="100">
+      </div>
+      <div class="col-md-4">
+        <a [tooltip]="'Nome completo da pessoa para contato.'" class="">
+          <i for="nome" class="fas fa-question-circle ajuste-tooltip"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="row mb-1">
+      <div class="col-md-2 text-right">
+        <label for="email" class="obrigatorio">E-mail do Contato</label>
+      </div>
+      <div class="col-md-4">
+        <input type="text" formControlName="email" psappContadorMaxlength="50" id="email" class="form-control"
+          maxlength="50">
+      </div>
+      <div class="col-md-4">
+        <a [tooltip]="'E-mail do Contato. Exemplo: pessoa@pbh.gov.br.'" class="">
+          <i for="email" class="fas fa-question-circle ajuste-tooltip"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="row mb-1">
+      <div class="col-md-2 text-right">
+        <label for="telefone" class="obrigatorio">Telefone do Contato</label>
+      </div>
+      <div class="col-md-4">
+        <input formControlName="telefone" id="telefone" class="form-control" kzMask="(99) 99999-9999">
+      </div>
+      <div class="col-md-4">
+        <a [tooltip]="'Telefone do Contato. Exemplo: (00) 0000-0000'" class="">
+          <i for="telefone" class="fas fa-question-circle ajuste-tooltip"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="row mb-1">
+      <div class="col-md-2 text-right">
+        <label for="setor" class="obrigatorio">Setor do Contato</label>
+      </div>
+      <div class="col-md-4">
+        <input type="text" formControlName="setor" psappContadorMaxlength="50" id="setor" class="form-control"
+          maxlength="50">
+      </div>
+      <div class="col-md-4">
+        <a [tooltip]="'Setor do Contato. Exemplo: Tec. da Informação.'" class="">
+          <i for="setor" class="fas fa-question-circle ajuste-tooltip"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="row mb-1">
+      <div class="col-md-2 text-right">
+        <label for="status" class="obrigatorio">Contato Ativo?</label>
+      </div>
+      <div class="col-md-4">
+        <app-input-radio-list [listaRadioModel]="dataSourceStatusRadio" id="status" formControlName="status">
+        </app-input-radio-list>
+      </div>
+    </div>
+
+    <piweb-barra-acoes class="mt-3">
+      <button piweb-btn-primario type="submit" (click)="salvarContatoEmpresa()"
+        [identificadorPermissao]="[permissaoEnum.CADASTRO_MANTEREXEMPLO]">Salvar</button>
+      <button piweb-btn-voltar title="Voltar" class="btn" (click)="voltar()">Voltar</button>
+    </piweb-barra-acoes>
+
+  </form>
+</piweb-container-padrao>

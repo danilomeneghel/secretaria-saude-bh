@@ -1,0 +1,52 @@
+version: "3.6"
+services:
+  backend:
+    image: nexus-imagens.pbh.gov.br/prodabel/hubsmsa-backend-qa:latest
+    environment:
+      - JAVA_OPTS=$JAVA_OPTS -Xms1024m -Xmx1024m -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MetaspaceSize=96M -XX:MaxMetaspaceSize=512m -Denv=qa -Djboss.modules.system.pkgs=$JBOSS_MODULES_SYSTEM_PKGS -Djava.awt.headless=true -Dresteasy.preferJacksonOverJsonB=true
+      - URL_APLICACAO=http://hubsmsa.qa.pbh
+    networks:
+      - traefik_net
+    ports:
+      - 80
+    secrets:
+      - hubsmsa
+    configs:
+      - source: hubsmsa-backend-qa..KEYCLOAK..202012231122
+        target: /run/configs/keycloak
+    deploy:
+      restart_policy:
+        condition: any
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.role == worker]
+      update_config:
+        delay: 2s
+      labels:
+        - "traefik.docker.network=traefik_net"
+        - "traefik.port=8080"
+        - "traefik.frontend.rule=Host:api-hubsmsa.qa.pbh;PathPrefix:/hubsmsa-backend"
+        - "traefik.backend.loadbalancer.stickiness=true"
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1024M
+        reservations:
+          cpus: '1'
+          memory: 1024M
+    logging:
+      driver: gelf
+      options:
+        gelf-address: udp://10.0.24.27:12201
+        tag: hubsmsa-backend-qa
+networks:
+  traefik_net:
+    external:
+      name: traefik_net
+secrets:
+  hubsmsa:
+    external: true
+configs:
+  hubsmsa-backend-qa..KEYCLOAK..202012231122:
+    external: true

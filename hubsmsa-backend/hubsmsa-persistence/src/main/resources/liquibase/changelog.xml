@@ -1,0 +1,26 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">    
+
+		<include relativeToChangelogFile="true" file="changesets/changeset-2020-01_01_10-30.sql"/>
+		<include relativeToChangelogFile="true" file="changesets/changeset-2020-01_05_10-00.sql"/>
+		<include relativeToChangelogFile="true" file="changesets/changeset-2020-01_07_16-00.sql"/>
+		<include relativeToChangelogFile="true" file="changesets/changeset-2020-06-05_13-55.sql"/>
+		<include relativeToChangelogFile="true" file="changesets/changeset-2020-06-08_08-15.sql"/>	
+		<include relativeToChangelogFile="true" file="changesets/changeset-2020-06-16_12-10.sql"/>
+		<include relativeToChangelogFile="true" file="changesets/changeset-2020-06_19_15-15.sql"/>
+		<include relativeToChangelogFile="true" file="changesets/changeset-2020-06-25_14-10.sql"/>		
+		<include relativeToChangelogFile="true" file="changesets/changeset-2020-07-08_13-44.sql"/>
+		<include relativeToChangelogFile="true" file="changesets/changeset-2020-07-08_14-31.sql"/>
+		<include relativeToChangelogFile="true" file="changesets/changeset-2020-09-24_15-30.sql"/>
+		<include relativeToChangelogFile="true" file="changesets/changeset-2020-10-09_14-05.sql"/>
+		<!-- <include relativeToChangelogFile="true" file="changesets/changeset-2020-10-26_11-50.sql"/>  -->
+		<include relativeToChangelogFile="true" file="changesets/changeset-2020-11-16_11-19.sql"/>
+		<include relativeToChangelogFile="true" file="changesets/changeset-2020-12-14_14-24.sql"/>
+		<include relativeToChangelogFile="true" file="changesets/changeset-2020-12-14_14-25.sql"/>
+		<!-- <include relativeToChangelogFile="true" file="changesets/changeset-2020-12-14_14-25.sql"/> -->
+		<include relativeToChangelogFile="true" file="changesets/changeset-2020-12-22_15-50.sql"/>
+		<include relativeToChangelogFile="true" file="changesets/changeset-2021-01-06_09-41.sql"/>
+
+</databaseChangeLog>

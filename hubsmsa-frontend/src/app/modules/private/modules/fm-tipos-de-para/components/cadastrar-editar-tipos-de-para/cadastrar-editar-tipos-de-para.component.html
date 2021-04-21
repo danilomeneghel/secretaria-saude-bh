@@ -1,0 +1,52 @@
+<piweb-container-padrao [titulo]="titulo">
+  <piweb-identificador-obrigatoriedade>
+  </piweb-identificador-obrigatoriedade>
+
+  <form [formGroup]="formPrincipal">
+
+    <div class="row mb-3">
+      <div class="col-md-2 text-right">
+        <label for="nome" class="obrigatorio">Nome do Tipo</label>
+      </div>
+      <div class="col-md-4">
+        <input type="text" psappContadorMaxlength="100" formControlName="nome" id="nome" class="form-control" maxlength="100">
+      </div>
+      <div class="col-md-4">
+        <a [tooltip]="'Nome do Tipo de De/Para.'" class="">
+          <i  for="nome" class="fas fa-question-circle ajuste-tooltip"></i>
+        </a>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-2 text-right">
+        <label for="descricao" class="obrigatorio">Descrição</label>
+      </div>
+      <div class="col-md-4">
+        <textarea formControlName="descricao" psappContadorMaxlength="250" id="descricao" class="form-control"
+          maxlength="250"></textarea>
+      </div>
+      <div class="col-md-4">
+        <a [tooltip]="'Descrição do Tipo de De/Para.'" class="">
+          <i  for="descricao" class="fas fa-question-circle ajuste-tooltip"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-2 text-right">
+        <label for="status" class="obrigatorio">Ativo ?</label>
+      </div>
+      <div class="col-md-4">
+        <app-input-radio-list [listaRadioModel]="dataSourceStatusRadio" id="status" formControlName="status">
+        </app-input-radio-list>
+      </div>
+    </div>
+
+    <piweb-barra-acoes class="mt-3">
+      <button piweb-btn-primario type="submit" (click)="salvarTipoDePara()"
+        [identificadorPermissao]="[permissaoEnum.CADASTRO_MANTEREXEMPLO]">Salvar</button>
+      <button piweb-btn-voltar title="Voltar" class="btn" (click)="voltar()">Voltar</button>
+    </piweb-barra-acoes>
+
+  </form>
+</piweb-container-padrao>

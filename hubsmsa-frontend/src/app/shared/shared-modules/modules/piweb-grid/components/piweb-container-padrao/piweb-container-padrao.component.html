@@ -1,0 +1,11 @@
+<div class="mb-3">
+  <h3 class="mb-3" *ngIf="titulo">{{titulo}}</h3>
+  <h5 class="mb-3" *ngIf="subtitulo">{{subtitulo}}</h5>
+  <div class="card">
+    <!-- fim CARD BODY -->
+    <div class="card-body">
+      <div class="ngc-alert-container"></div>
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>

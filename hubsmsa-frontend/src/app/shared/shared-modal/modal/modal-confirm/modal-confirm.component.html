@@ -1,0 +1,20 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="modal-centerTitle">{{modalRef?.mtNgxModalConfig?.title}}</h5>
+  <button type="button" class="close" aria-label="Close" (click)="close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <span [innerHTML]="this.modalBodyQuestion()"></span>
+  <span class="text-danger" *ngIf="modalRef?.mtNgxModalConfig?.dangerModal"><br> Esta operação não poderá ser
+        revertida.</span>
+</div>
+<div class="modal-footer">
+
+  <button type="button" class="btn btn-outline-secondary" *ngIf="!modalRef.mtNgxModalConfig.onlyConfirm"
+          (click)="confirm(false)">{{modalRef?.mtNgxModalConfig?.cancelText || 'Não'}}</button>
+
+  <button type="button" class="btn" [ngClass]="modalRef?.mtNgxModalConfig?.botaoStyle"
+          (click)="confirm(true)">{{modalRef?.mtNgxModalConfig?.confirmText || 'Sim'}}</button>
+
+</div>

@@ -1,0 +1,88 @@
+<piweb-container-padrao [titulo]="titulo">
+  <piweb-identificador-obrigatoriedade>
+  </piweb-identificador-obrigatoriedade>
+
+  <form [formGroup]="formPrincipal">
+    <div class="row mb-1">
+      <div class="col-md-2 text-right">
+        <label for="nomeEmpresarial" class="obrigatorio">Nome Empresarial</label>
+      </div>
+      <div class="col-md-4">
+        <input type="text" psappContadorMaxlength="100" formControlName="nomeEmpresarial" id="nomeEmpresarial" class="form-control" maxlength="100">
+      </div>
+      <div class="col-md-4">
+        <a [tooltip]="'Nome completo da Empresa.'">
+          <i  for="nomeEmpresarial" class="fas fa-question-circle ajuste-tooltip"></i>
+        </a>
+      </div>
+    </div>
+    <div class="row mb-1">
+      <div class="col-md-2 text-right">
+        <label for="nomeFantasia" class="obrigatorio">Nome Fantasia</label>
+      </div>
+      <div class="col-md-4">
+        <input type="text" psappContadorMaxlength="100" formControlName="nomeFantasia" id="nomeFantasia" class="form-control" maxlength="100">
+      </div>
+      <div class="col-md-4">
+        <a [tooltip]="'Nome Fantasia da Empresa.'" class="">
+          <i  for="nomeFantasia" class="fas fa-question-circle ajuste-tooltip"></i>
+        </a>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-2 text-right">
+        <label for="cnpj">CNPJ</label>
+      </div>
+      <div class="col-md-4">
+        <input type="text" formControlName="cnpj" id="cnpj" class="form-control" maxlength="18" kzMask="99.999.999/9999-99">
+      </div>
+      <div class="col-md-4">
+        <a [tooltip]="'CNPJ da Empresa. Exemplo: 00.000.000/0000-00.'" class="">
+          <i  for="cnpj" class="fas fa-question-circle ajuste-tooltip"></i>
+        </a>
+      </div>
+    </div>
+    <div class="row mb-1">
+      <div class="col-md-2 text-right">
+        <label for="cnes">CNES</label>
+      </div>
+      <div class="col-md-4">
+        <input type="text" psappContadorMaxlength="10" formControlName="cnes" id="cnes" class="form-control" maxlength="10">
+      </div>
+      <div class="col-md-4">
+        <a [tooltip]="'Código CNES da Empresa'">
+          <i  for="cnes" class="fas fa-question-circle ajuste-tooltip"></i>
+        </a>
+      </div>
+    </div>
+    <div class="row mb-1">
+      <div class="col-md-2 text-right">
+        <label for="site">Site</label>
+      </div>
+      <div class="col-md-4">
+        <input type="text" psappContadorMaxlength="100" formControlName="site" id="site" class="form-control" maxlength="100">
+      </div>
+      <div class="col-md-4">
+        <a [tooltip]="'Site da Empresa. Exemplo: www.empresa.com.br'" class="mt-2">
+          <i for="site" class="fas fa-question-circle ajuste-tooltip"></i>
+        </a>
+      </div>
+    </div>
+    <div class="row mb-1">
+      <div class="col-md-2 text-right">
+        <label for="status" class="obrigatorio">Empresa Ativa?</label>
+      </div>
+      <div class="col-md-4">
+        <app-input-radio-list [listaRadioModel]="dataSourceStatusRadio" id="status" formControlName="status">
+        </app-input-radio-list>
+      </div>
+    </div>
+
+    <piweb-barra-acoes class="mt-3">
+      <button piweb-btn-primario type="submit" (click)="salvarEmpresa()"
+        [identificadorPermissao]="[permissaoEnum.CADASTRO_MANTEREXEMPLO]">Salvar</button>
+      <button piweb-btn-voltar title="Voltar" class="btn" (click)="voltar()">Voltar</button>
+    </piweb-barra-acoes>
+
+  </form>
+</piweb-container-padrao>

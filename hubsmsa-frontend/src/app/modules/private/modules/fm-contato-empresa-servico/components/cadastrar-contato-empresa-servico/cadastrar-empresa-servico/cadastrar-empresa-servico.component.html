@@ -1,0 +1,87 @@
+<piweb-container-padrao [titulo]="titulo">
+  <piweb-identificador-obrigatoriedade>
+  </piweb-identificador-obrigatoriedade>
+
+  <form [formGroup]="formPrincipal">
+    <div class="row mb-1">
+      <div class="col-md-2 text-md-right">
+        <label for="idEmpresa" class="obrigatorio">Empresa</label>
+      </div>
+      <div class="col-md-4">
+        <select class="form-control" formControlName="idEmpresa" id="idEmpresa">
+          <option [ngValue]="null">Selecione...</option>
+          <option [ngValue]="empresa.id" *ngFor="let empresa of listaEmpresasObs | async">
+            {{empresa.descricao}}
+        </select>
+      </div>
+    </div>
+
+    <div class="row mb-1">
+      <div class="col-md-2 text-md-right">
+        <label for="idContatoEmpresa" class="obrigatorio">Contato da Empresa</label>
+      </div>
+      <div class="col-md-4">
+        <select class="form-control" formControlName="idContatoEmpresa" id="idContatoEmpresa">
+          <option [ngValue]="null">Selecione...</option>
+          <option [ngValue]="contatoEmpresa.id" *ngFor="let contatoEmpresa of listaContatoEmpresaObs | async">
+            {{contatoEmpresa.descricao}}
+        </select>
+      </div>
+    </div>
+
+    <div class="row mb-1">
+      <div class="col-md-2 text-md-right">
+        <label for="idServico" class="obrigatorio">Serviço</label>
+      </div>
+      <div class="col-md-4">
+        <select class="form-control" formControlName="idServico" id="idServico">
+          <option [ngValue]="null">Selecione...</option>
+          <option [ngValue]="servico.id" *ngFor="let servico of listaServicoObs | async">
+            {{servico.nome}}
+        </select>
+      </div>
+    </div>
+
+    <div class="row mb-1">
+      <div class="col-md-2 text-md-right">
+        <label >Sistema Primário:</label>
+      </div>
+      <div class="col-md-4">
+        <label id="sistemaPrimario">{{sistemaPrimario}}</label>
+      </div>
+    </div>
+
+    <div class="row mb-1">
+      <div class="col-md-2 text-md-right">
+        <label >Sistema Secundário:</label>
+      </div>
+      <div class="col-md-4">
+        <label id="sistemaSecundario">{{sistemaSecundario}}</label>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-2 text-right">
+        <label for="notificacao" class="obrigatorio">Notificação</label>
+      </div>
+      <div class="col-md-4 col-xs-12 text-xs-left">
+          <label class="checkbox-inline" for="notificacaoSucesso">
+            <input type="checkbox" id="notificacaoSucesso" formControlName="notificacaoSucesso" >
+            Sucesso</label>
+          <label class="checkbox-inline" for="notificacaoFalha">
+          <input type="checkbox" id="notificacaoFalha" formControlName="notificacaoFalha" >
+            Falha</label>
+      </div>
+        <a [tooltip]="'Situações em que o Contato da Empresa será notificado.'" class="">
+          <i for="nome" class="fas fa-question-circle ajuste-tooltip"></i>
+        </a>
+    </div>
+
+    <piweb-barra-acoes class="mt-3">
+      <button piweb-btn-primario type="submit" (click)="salvarContatoEmpresaServico()"
+        [identificadorPermissao]="[permissaoEnum.CADASTRO_MANTEREXEMPLO]">Salvar</button>
+      <button piweb-btn-voltar title="Voltar" class="btn" (click)="voltar()">Voltar</button>
+    </piweb-barra-acoes>
+
+  </form>
+</piweb-container-padrao>

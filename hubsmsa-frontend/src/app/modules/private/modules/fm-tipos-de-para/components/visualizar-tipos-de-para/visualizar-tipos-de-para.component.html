@@ -1,0 +1,40 @@
+<piweb-container-padrao titulo="Visualização de Tipo de De/Para">
+  <div id="visualizar2">
+    <div class="row mb-3">
+
+      <div class="col-md-2 text-right">
+        <label>Nome </label>
+      </div>
+      <div class="col-md-4">
+        {{ tipoDePara?.nome }}
+      </div>
+
+    </div>
+    <div class="row mb-3">
+
+      <div class="col-md-2 text-right">
+        <label>Descrição</label>
+      </div>
+      <div class="col-md-4">
+        {{ tipoDePara?.descricao }}
+      </div>
+
+    </div>
+
+    <div class="row mb-3">
+
+      <div class="col-md-2 text-right">
+        <label>Ativo ?</label>
+      </div>
+
+      <div class="col-md-4">
+        {{ tipoDePara?.status | enumTradutor:statusEnum}}
+      </div>
+
+    </div>
+  </div>
+
+  <piweb-barra-acoes>
+    <button piweb-btn-voltar title="Voltar" class="btn" (click)="voltar()">Voltar</button>
+  </piweb-barra-acoes>
+</piweb-container-padrao>

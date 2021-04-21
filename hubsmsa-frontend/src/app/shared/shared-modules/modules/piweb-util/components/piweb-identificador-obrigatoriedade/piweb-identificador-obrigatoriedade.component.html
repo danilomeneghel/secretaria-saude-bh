@@ -1,0 +1,11 @@
+<div class="instrucao">
+
+  <p #textContent [hidden]="!mostrarMensagemPadrao">
+    <ng-content></ng-content>
+  </p>
+  <p *ngIf="!mostrarMensagemPadrao">
+    Os campos com asterisco (<sup><i class="fa fa-asterisk" style="color: red"></i></sup>) são de preenchimento
+    obrigatório.
+  </p>
+
+</div>

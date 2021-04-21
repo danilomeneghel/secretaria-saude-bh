@@ -1,0 +1,20 @@
+version: '3.4'
+services:
+ db-hubsmsa:
+  build: ./docker-entrypoint-initdb.d
+  image: sonda.com.br/postgresql/hubsmsa:latest
+  container_name: postgresql-hubsmsa
+  restart: always
+  environment:
+   TZ: America/Bahia
+   PGDATA: /var/lib/postgresql/data
+   POSTGRES_DB: postgres
+   POSTGRES_USER:  postgres
+   POSTGRES_PASSWORD: sonda@123
+  volumes:
+    - pgdata:/var/lib/postgresql/data:Z
+  ports:
+    - 5432:5432
+volumes:  
+  pgdata:
+    driver: local

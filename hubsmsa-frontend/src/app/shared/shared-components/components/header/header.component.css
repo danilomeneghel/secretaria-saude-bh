@@ -1,0 +1,13 @@
+.navbar-brand {
+    position: relative;
+}
+
+.navbar-brand:after {
+    content: " ";
+    position: absolute;
+    right: -5px;
+    top: 20px;
+    width: 1px;
+    height: 25px;
+    background: #000;
+}

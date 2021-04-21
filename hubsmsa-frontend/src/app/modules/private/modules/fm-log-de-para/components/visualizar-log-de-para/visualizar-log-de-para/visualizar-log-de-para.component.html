@@ -1,0 +1,80 @@
+<piweb-container-padrao titulo="Visualização de Log de De/Para">
+  <div id="visualizar2">
+    <div class="row mb-3">
+
+      <div class="col-md-2 text-right">
+        <label>Data do Evento</label>
+      </div>
+      <div class="col-md-4">
+        {{ historico?.dataEvento }}
+      </div>
+
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-4 text-left">
+        <h5>Dados do Usuário</h5>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-2 text-right">
+        <label>Nome</label>
+      </div>
+      <div class="col-md-4">
+        {{ historico?.nome }}
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-2 text-right">
+        <label>Email</label>
+      </div>
+      <div class="col-md-4">
+        {{ historico?.email }}
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-2 text-right">
+        <label>Login</label>
+      </div>
+      <div class="col-md-4">
+        {{ historico?.login }}
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-4 text-left">
+        <h5>Dados do De/Para</h5>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-2 text-right">
+        <label>Revisão</label>
+      </div>
+      <div class="col-md-4">
+        {{ historico?.revisao }}
+      </div>
+    </div>
+
+    <div class="card-data">
+      <div  class="card" *ngFor="let item of historico?.alteracoes">
+        <div class="container">
+          <div class="row">
+            <label class="col-md-4 text-right">Campo</label><label class="col-md-8 valor">{{item.campo}}</label>
+          </div>
+          <div class="row">
+            <label class="col-md-4 text-right">Antes</label><label  class="col-md-8 valor"><span [ngClass]="item.antes === 'De/Para Criada' ? 'italic':''">{{item.antes}}</span></label>
+          </div>
+          <div class="row">
+            <label class="col-md-4 text-right">Depois</label><label  class="col-md-8 valor"><span [ngClass]="item.depois === 'De/Para Criada' ? 'italic':''">{{item.depois}}</span></label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <piweb-barra-acoes>
+    <button piweb-btn-voltar title="Voltar" class="btn" (click)="voltar()">Voltar</button>
+  </piweb-barra-acoes>
+</piweb-container-padrao>

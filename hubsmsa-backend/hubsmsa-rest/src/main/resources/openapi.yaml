@@ -1,0 +1,12 @@
+resourcePackages:
+- br.gov.pbh.prodabel.endpoint
+prettyPrint: true
+cacheTTL: 0
+openAPI:
+  servers:
+     - url: http://localhost:8080/hubsmsa-backend/api/v1/
+       description: Servidor de desenvolvimento (Contexto EAR)
+  info:
+    version: '1.0.0'
+    title: Prodabel API Rest
+    description: 'Recursos expostos pelo Projeto'

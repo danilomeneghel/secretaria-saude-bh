@@ -1,0 +1,10 @@
+<li class="nav-item dropdown {{customClass}}" [class.d-none]="!possuiSubmenu">
+
+  <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+    aria-expanded="false" [innerHTML]="titulo"></a>
+
+  <div class="dropdown-menu" #submenuParent aria-labelledby="navbarDropdown">
+    <ng-content></ng-content>
+  </div>
+
+</li>

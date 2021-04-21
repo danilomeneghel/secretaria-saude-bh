@@ -1,0 +1,79 @@
+<div class="resultado mb-3" [id]="'container'+mId" *ngIf="paginaResultado?.totalRegistros">
+  <div class="card">
+    <div class="card-header">
+      <div class="row">
+        <div class="col-6 pt-1"><a class="collapse-table" data-toggle="collapse" [href]="'#'+mId" role="button"
+            (click)="exibir(tabela.classList)" aria-expanded="true" [attr.aria-controls]="mId">{{collapseTitle}}
+          </a>
+        </div>
+      </div>
+      <ng-container *ngIf="exibirTabelaBody">
+        <ng-content select="piweb-tabela-header"></ng-content>
+      </ng-container>
+    </div>
+    <div class="card-body table-responsive collapse show" #tabela [id]="mId">
+      <div class="row numero-de-linhas" *ngIf="(exibirLimiteLinhas === 'true')">
+        <div class="col-12 text-right" style="white-space:nowrap">Exibir &nbsp;
+          <select [formControl]="selecionarItensPorPagina">
+            <option *ngFor="let numero of linhasPorPagina" [value]="numero">
+              {{numero}}
+            </option>
+          </select>
+          &nbsp; linhas </div>
+      </div>
+      <table class="table table-striped table-hover">
+        <tbody>
+          <tr>
+
+            <th *ngIf="multiSelecao">
+              <input type="checkbox" (click)="selecionarTodos($event?.target?.checked)">
+            </th>
+
+            <th *ngFor="let colunaConfigModel of listaColunas" [class]="colunaConfigModel?.class || ''">
+              {{colunaConfigModel?.tituloColuna}}
+
+              <a *ngIf="colunaConfigModel?.atributo && colunaConfigModel?.tituloColuna &&
+                        !colunaConfigModel?.esconderOrdenacao && !tabelaConfig.esconderOrdenacao"
+                title="Reordenar a coluna" (click)="ordenar(colunaConfigModel?.atributo)">
+                <i class=" fas fa-sort"></i>
+              </a>
+
+            </th>
+
+          </tr>
+
+          <tr *ngFor="let tabelaModel of listaItens; let i = index">
+            <td *ngIf="multiSelecao">
+              <input type="checkbox" [checked]="tabelaModel?.selecionado"
+                (click)="selecionarItem($event?.target?.checked,tabelaModel)">
+            </td>
+            <td *ngFor="let colunaConfigModel of listaColunas" [class]="colunaConfigModel?.bodyClass || ''">
+              <ng-container
+                *ngTemplateOutlet="colunaConfigModel.mTemplate; context: {$implicit:tabelaModel?.modelo[colunaConfigModel.atributo], item:tabelaModel}">
+              </ng-container>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="row">
+        <div class="col-6" *ngIf="paginaResultado?.totalRegistros && !tabelaConfig.esconderInfoRegistros">
+          <span class="d-block font-weight-bold">Total de registros: {{ paginaResultado?.totalRegistros }}</span>
+          <span>Listando {{ paginaResultado?.itens?.length }} de {{ paginaResultado?.totalRegistros }}</span>
+        </div>
+        <div class="col-6 ml-auto d-flex justify-content-end" *ngIf="!tabelaConfig.esconderPaginacao">
+          <pagination [boundaryLinks]="true" class="pagination-sm" [maxSize]="10"
+            [itemsPerPage]="this.selecionarItensPorPagina.value" [(ngModel)]="numeroPaginaAtual"
+            (pageChanged)="novaPagina($event)" [totalItems]="paginaResultado?.totalRegistros" previousText="&lsaquo;"
+            nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+          </pagination>
+        </div>
+      </div>
+    </div>
+    <div class="row barra-de-acoes" *ngIf="exibirBotoesExportarDados">
+      <div class="col">
+        <button piweb-btn-primario title="Gerar Excel" class="btn btn-success" (click)="gerarExcel()">GERAR EXCEL</button>
+        <button piweb-btn-primario title="Gerar CSV" class="btn btn-success" (click)="gerarCsv()">GERAR CSV</button>
+      </div>
+    </div>
+  </div>
+</div>

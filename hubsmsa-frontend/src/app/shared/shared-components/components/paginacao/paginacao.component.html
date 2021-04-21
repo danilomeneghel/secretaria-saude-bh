@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="col-6" *ngIf="totalItems">
+    <span class="d-block font-weight-bold">Total de registros: {{ totalItems }}</span>
+    <span>Listando {{ qtdItens }} de {{ totalItems }}</span>
+  </div>
+  <div class="col-6 ml-auto d-flex justify-content-end">
+    <pagination class="pagination-sm" (pageChanged)="novaPagina($event)" [totalItems]="totalItems"
+      previousText="&laquo;" nextText="&raquo;"></pagination>
+  </div>
+</div>

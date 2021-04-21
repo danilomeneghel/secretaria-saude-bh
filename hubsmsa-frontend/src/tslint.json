@@ -1,0 +1,22 @@
+{
+  "extends": "../tslint.json",
+  "rules": {
+    "directive-selector": [
+      false,
+      "attribute",
+      "sbapp",
+      "camelCase"
+    ],
+    "component-selector": [
+      false,
+      "element",
+      "sbapp",
+      "kebab-case"
+    ],
+    "variable-name": [
+      true,
+      "check-format",
+      "allow-leading-underscore"
+    ]
+  }
+}

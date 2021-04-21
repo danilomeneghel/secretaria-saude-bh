@@ -1,0 +1,49 @@
+<piweb-container-padrao [titulo]="titulo">
+  <piweb-identificador-obrigatoriedade></piweb-identificador-obrigatoriedade>
+
+  <form [formGroup]="formPrincipal">
+    <div class="row mb-3">
+
+      <div class="col-md-2 text-right">
+        <label for="codigo" class="obrigatorio">Código</label>
+      </div>
+      <div class="col-md-4">
+        <input type="text" formControlName="codigo" id="codigo" class="form-control" maxlength="4">
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-2 text-right">
+        <label for="nomeExemplo" class="obrigatorio">Nome do Exemplo</label>
+      </div>
+      <div class="col-md-4">
+        <input type="text" formControlName="nomeExemplo" id="nomeExemplo" class="form-control" maxlength="100">
+      </div>
+
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-2 text-right">
+        <label for="status">Status</label>
+      </div>
+
+      <div class="col-md-4">
+        <app-input-radio-list [listaRadioModel]="dataSourceStatusRadio" id="status" formControlName="status">
+        </app-input-radio-list>
+      </div>
+    </div>
+
+    <piweb-barra-acoes>
+      <button piweb-btn-primario type="submit" (click)="salvar()"
+        [identificadorPermissao]="[permissaoEnum.CADASTRO_MANTEREXEMPLO]">Salvar</button>
+      <button class="btn btn-danger" *ngIf="modoTela === modoTelaEnum.EDITAR" (click)="excluir()"
+        [identificadorPermissao]="[permissaoEnum.CADASTRO_MANTEREXEMPLO]">Excluir</button>
+      <button piweb-btn-secundario (click)="limpar()">Limpar</button>
+      <button piweb-btn-voltar title="Voltar" class="btn" (click)="voltar()">Voltar</button>
+    </piweb-barra-acoes>
+  </form>
+</piweb-container-padrao>
+
+<historico-alteracao-padrao [historicoAlteracao]="resultadoTabelaHistoricoAlteracao"
+  [numeroPaginaAtual]="paginaAtual.pagina" (novaPaginaEvt)="recuperarHistoricoAlteracao($event)">
+</historico-alteracao-padrao>

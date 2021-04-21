@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="br.gov.pbh.prodabel.hubsmsa"
+		transaction-type="JTA">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<jta-data-source>java:/hubsmsaDS</jta-data-source>
+		<class>br.gov.pbh.prodabel.hubsmsa.persistence.model.Exemplo</class>
+		<class>br.gov.pbh.prodabel.hubsmsa.persistence.audit.Revision</class>
+		<class>br.gov.pbh.prodabel.hubsmsa.persistence.model.Empresa</class>
+
+		<properties>
+			<property name="hibernate.default_schema" value="hubsmsa" />
+			<property name="hibernate.dialect"
+				value="org.hibernate.dialect.PostgreSQLDialect" />
+			<property name="org.hibernate.envers.revision_field_name"
+				value="id_revisao" />
+			<property
+				name="org.hibernate.envers.revision_type_field_name"
+				value="rev_type" />
+			<property name="org.hibernate.envers.store_data_at_delete"
+				value="true" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+		</properties>
+	</persistence-unit>
+
+
+	<persistence-unit name="sisrede">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<class>br.gov.pbh.prodabel.hubsmsa.persistence.model.AtendimentoPaciente</class>
+		<properties>
+			<property name="javax.persistence.jdbc.driver"
+				value="com.microsoft.sqlserver.jdbc.SQLServerDriver"></property>
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:sqlserver://10.50.0.110:1433;databaseName=SaudeBH_HUBSMSA"></property>
+			<property name="javax.persistence.jdbc.user"
+				value="lk_saudebh_hubsmsa"></property>
+			<property name="javax.persistence.jdbc.password"
+				value="$lk_saudebh_hubsmsa_dsv"></property>
+			<property name="hibernate.dialect"
+				value="org.hibernate.dialect.SQLServer2008Dialect" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+		</properties>
+	</persistence-unit>
+
+</persistence>

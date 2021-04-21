@@ -1,0 +1,73 @@
+<piweb-container-padrao titulo="Visualização de Contato">
+  <div id="visualizar2">
+    <div class="row mb-3">
+
+      <div class="col-md-2 text-right">
+        <label>Nome </label>
+      </div>
+      <div class="col-md-4">
+        {{ contatoEmpresa?.nome }}
+      </div>
+
+    </div>
+
+    <div class="row mb-3">
+
+      <div class="col-md-2 text-right">
+        <label> Empresa</label>
+      </div>
+      <div class="col-md-4">
+        {{ contatoEmpresa?.empresa?.nomeFantasia }}
+      </div>
+
+    </div>
+
+    <div class="row mb-3">
+
+      <div class="col-md-2 text-right">
+        <label>Email</label>
+      </div>
+      <div class="col-md-4">
+        {{ contatoEmpresa?.email}}
+      </div>
+
+    </div>
+
+    <div class="row mb-3">
+
+      <div class="col-md-2 text-right">
+        <label>Telefone</label>
+      </div>
+      <div class="col-md-4">
+        {{ contatoEmpresa?.telefone | formatText: '(99) 99999-9999'}}
+      </div>
+
+    </div>
+    <div class="row mb-3">
+
+      <div class="col-md-2 text-right">
+        <label>Setor</label>
+      </div>
+      <div class="col-md-4">
+        {{ contatoEmpresa?.setor }}
+      </div>
+
+    </div>
+
+    <div class="row mb-3">
+
+      <div class="col-md-2 text-right">
+        <label>Ativo ?</label>
+      </div>
+
+      <div class="col-md-4">
+        {{ contatoEmpresa?.status | enumTradutor:statusEnum}}
+      </div>
+
+    </div>
+  </div>
+
+  <piweb-barra-acoes>
+    <button piweb-btn-voltar title="Voltar" class="btn" (click)="voltar()">Voltar</button>
+  </piweb-barra-acoes>
+</piweb-container-padrao>

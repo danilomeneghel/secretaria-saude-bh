@@ -1,0 +1,29 @@
+.italic {
+  font-style: italic;
+}
+
+.align-center {
+  text-align: center;
+  display: block;
+}
+
+.card-data {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 46%;
+  line-height: 100px;
+  background-color: white;
+  margin: 10px;
+  color: black;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.valor {
+    color: black !important;
+}

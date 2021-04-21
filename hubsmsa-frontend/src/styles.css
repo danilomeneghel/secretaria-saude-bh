@@ -1,0 +1,33 @@
+/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+
+@import "assets/css/ngx-spinner.css";
+@import "assets/css/piweb3-pbh.css";
+
+.mw-75 {
+    max-width: 75%;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.minw-100 {
+    min-width: 100px;
+}
+
+.desabilitar-campo {
+    pointer-events: none;
+}
+
+.icone-medio {
+    font-size: 24px;
+}
+
+.btn-editar {
+    padding: 0 !important;
+}
+
+button[icone*="fa-eye"]:disabled {
+    filter: grayscale(100);
+}

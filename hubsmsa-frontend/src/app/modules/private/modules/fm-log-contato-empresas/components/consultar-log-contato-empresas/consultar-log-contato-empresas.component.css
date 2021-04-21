@@ -1,0 +1,8 @@
+.italic {
+  font-style: italic;
+}
+
+.align-center {
+  text-align: center;
+  display: block;
+}

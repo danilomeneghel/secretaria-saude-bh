@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>br.gov.pbh.prodabel</groupId>
+        <artifactId>hubsmsa</artifactId>
+        <version>1.1.18</version>
+    </parent>
+
+    <artifactId>hubsmsa-ear</artifactId>
+    <packaging>ear</packaging>
+
+    <name>hubsmsa-ear (Implantável Serviços)</name>
+    <description>Módulo responsável por gerar o implantável da aplicação.</description>
+
+    <build>
+        <finalName>${project.parent.artifactId}</finalName>
+        <plugins>
+            <plugin>
+
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ear-plugin</artifactId>
+                <version>2.10.1</version>
+                <configuration>
+                    <filtering>true</filtering>
+                    <defaultLibBundleDir>lib</defaultLibBundleDir>
+                    <generateApplicationXml>true</generateApplicationXml>
+                    <modules>
+                        <webModule>
+                            <groupId>br.gov.pbh.prodabel</groupId>
+                            <artifactId>hubsmsa-rest</artifactId>
+                            <contextRoot>/hubsmsa-backend</contextRoot>
+                            <uri>hubsmsa-rest.war</uri>
+                        </webModule>
+                        <ejbModule>
+                            <groupId>br.gov.pbh.prodabel</groupId>
+                            <artifactId>hubsmsa-service</artifactId>
+                        </ejbModule>
+                         <ejbModule>
+                            <groupId>br.gov.pbh.prodabel</groupId>
+                            <artifactId>hubsmsa-integration</artifactId>
+                        </ejbModule>
+                        <ejbModule>
+                            <groupId>br.gov.pbh.prodabel</groupId>
+                            <artifactId>hubsmsa-persistence</artifactId>
+                        </ejbModule>
+                    </modules>
+                </configuration>
+            </plugin>
+            <plugin>
+				<groupId>org.liquibase</groupId>
+				<artifactId>liquibase-maven-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+			<plugin> 
+	            <groupId>org.apache.maven.plugins</groupId> 
+	            <artifactId>maven-release-plugin</artifactId> 
+	            <version>2.5.3</version> 
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>br.gov.pbh.prodabel</groupId>
+            <artifactId>hubsmsa-integration</artifactId>
+            <version>1.1.18</version>
+            <type>ejb</type>
+        </dependency>
+        <dependency>
+            <groupId>br.gov.pbh.prodabel</groupId>
+            <artifactId>hubsmsa-service</artifactId>
+            <version>1.1.18</version>
+            <type>ejb</type>
+        </dependency>
+        <dependency>
+            <groupId>br.gov.pbh.prodabel</groupId>
+            <artifactId>hubsmsa-persistence</artifactId>
+            <version>1.1.18</version>
+            <type>ejb</type>
+        </dependency>
+        <dependency>
+            <groupId>br.gov.pbh.prodabel</groupId>
+            <artifactId>hubsmsa-rest</artifactId>
+            <version>1.1.18</version>
+            <type>war</type>
+        </dependency>
+    </dependencies>
+
+</project>

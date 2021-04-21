@@ -1,0 +1,12 @@
+<nav class="navbar navbar-expand-lg navbar-light mb-2">
+  <div class="container">
+    <a href="#" class="navbar-brand d-none d-sm-inline-block">
+      <ng-content select=".navbar-brand"></ng-content>
+      {{tituloAplicacao}} <small>{{minTituloAplicacao ? '-' + minTituloAplicacao:''}}</small>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".collapse2">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <ng-content select="piweb-header-menu-bar"></ng-content>
+  </div>
+</nav>
